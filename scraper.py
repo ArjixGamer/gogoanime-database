@@ -58,27 +58,42 @@ class Anime:
 
     @property
     def anime_type(self):
-        element = self.querySelector(
-            'div.anime_info_body_bg > p:nth-child(4) > a')
-        return AnimeType(element.text, element['href'])
+        try:
+            element = self.querySelector(
+                'div.anime_info_body_bg > p:nth-child(4) > a')
+            return AnimeType(element.text, element['href'])
+        except:
+            return 'N/A'
 
     @property
     def description(self):
-        return self.querySelector('div.anime_info_body_bg > p:nth-child(5)').text.replace('Plot Summary:', '').strip()
+        try:
+            return self.querySelector('div.anime_info_body_bg > p:nth-child(5)').text.replace('Plot Summary:', '').strip()
+        except:
+            return ''
 
     @property
     def genre(self):
-        return [Genre(x['title'], x['href']) for x in self.querySelectorAll('div.anime_info_body_bg > p:nth-child(6) > a')]
+        try:
+            return [Genre(x['title'], x['href']) for x in self.querySelectorAll('div.anime_info_body_bg > p:nth-child(6) > a')]
+        except:
+            return []
 
     @property
     def year(self):
-        return re.search(r"\d{4}", str(self.querySelector('div.anime_info_body_bg > p:nth-child(7)')))[0]
+        try:
+            return re.search(r"\d{4}", str(self.querySelector('div.anime_info_body_bg > p:nth-child(7)')))[0]
+        except:
+            return '6969'
 
     @property
     def status(self):
-        element = self.querySelector(
-            'div.anime_info_body_bg > p:nth-child(8) > a')
-        return Status(element.text, element['href'])
+        try:
+            element = self.querySelector(
+                'div.anime_info_body_bg > p:nth-child(8) > a')
+            return Status(element.text, element['href'])
+        except:
+            return 'N/A'
 
     @property
     def total_episodes(self):
