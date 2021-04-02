@@ -12,6 +12,9 @@ class AnimeType:
     def __repr__(self):
         return "<Type -> {}>".format(self.name)
 
+    def __str__(self):
+        return self.name
+
 
 class Genre:
     def __init__(self, name, link):
@@ -21,6 +24,9 @@ class Genre:
     def __repr__(self):
         return "<Genre -> {}>".format(self.name)
 
+    def __str__(self):
+        return self.name
+
 
 class Status:
     def __init__(self, name, link):
@@ -29,6 +35,9 @@ class Status:
 
     def __repr__(self):
         return "<Status -> {}>".format(self.name)
+
+    def __str__(self):
+        return self.name
 
 
 class Anime:
@@ -81,15 +90,15 @@ class Anime:
     @property
     def data(self):
         return {
-            'Title': self.title,
-            'OtherTitle': self.alternative_title,
-            'Slug': self.slug,
-            'Type': self.anime_type,
-            'Description': self.description,
-            'Genre': self.genre,
-            'Year': self.year,
-            'Status': self.status,
-            'TotalEpisodes': self.total_episodes
+            'title': self.title,
+            'alternative_title': self.alternative_title,
+            'slug': self.slug,
+            'anime_type': self.anime_type,
+            'description': self.description,
+            'genre': self.genre,
+            'year': self.year,
+            'status': self.status,
+            'total_episodes': self.total_episodes
         }
 
     def __repr__(self):
