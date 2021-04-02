@@ -2,17 +2,26 @@ from scraper import Anime
 from tqdm import tqdm
 import requests
 import json
+import sys
 import os
+
+
+disable_progress_bar = True if sys.argv[1] == "pbar-off" else False
 
 
 link = 'https://raw.githubusercontent.com/ArjixGamer/gogoanime-random/main/all_anime.json'
 ALL_ANIME = requests.get(link).json()
 directory = './gogoanime'
 
-
-pbar = tqdm(total=len(ALL_ANIME), unit=' anime')
+if not disable_progress_bar:
+    pbar = tqdm(total=len(ALL_ANIME), unit=' anime')
 for anime in ALL_ANIME:
-    pbar.update(1)
+
+    if not disable_progress_bar:
+        pbar.update(1)
+    else:
+        print('Parsing:', anime)
+
     a = Anime(anime)
     data = json.loads(json.dumps({x: str(y) for x, y in a.data.items()}))
     # silly way to ensure that there are no differences between this and the saved file if it exists
