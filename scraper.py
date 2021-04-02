@@ -4,6 +4,10 @@ import json
 import re
 
 
+def cleanse(text):
+    return re.sub(r'(\<|\>|\:|\'|\"|/|\\|\||\?|\*)', '', text)
+
+
 class AnimeType:
     def __init__(self, name, link):
         self.name = name
